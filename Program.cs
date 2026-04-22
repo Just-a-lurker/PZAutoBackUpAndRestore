@@ -33,6 +33,7 @@ namespace PZAutoBackUpAndRestore
             if (string.IsNullOrEmpty(steamPath))
             {
                 Console.WriteLine("Steam is not installed on this system.");
+                Console.ReadKey();
                 return;
             }
 
@@ -54,6 +55,7 @@ namespace PZAutoBackUpAndRestore
             else
             {
                 Console.WriteLine("Do you even Zomboid ? - No game found");
+                Console.ReadKey();
                 return;
             }
 
@@ -114,6 +116,7 @@ namespace PZAutoBackUpAndRestore
             else
             {
                 Console.WriteLine("Do you even Zomboid ? - No save folder found");
+                Console.ReadKey();
                 return;
             }
             Console.WriteLine($"Autosave is currently {(usingAutosave ? $"on, interval: {saveInterval} minutes" : "off")}");
@@ -250,7 +253,6 @@ namespace PZAutoBackUpAndRestore
 
         static void LaunchGame()
         {
-            // The protocol for running a game is steam://run/
             string steamUri = $"steam://run/{AppId}";
 
             try
@@ -258,7 +260,7 @@ namespace PZAutoBackUpAndRestore
                 ProcessStartInfo startInfo = new ProcessStartInfo
                 {
                     FileName = steamUri,
-                    UseShellExecute = true // This is critical for URI schemes
+                    UseShellExecute = true
                 };
 
                 Process.Start(startInfo);
